@@ -79,3 +79,33 @@ function decrement() {
         clearInterval(intervalId)
     }
 }
+
+// function for grabing the questions from the question object
+function displayQuestion(event) {
+    // pull from questionsObject
+    var curQ = eval("questionsObject.q" + event + ".q")
+
+    var answer = eval("questionsObject.q" + event + ".possibAns")
+
+    // global variables
+    rightAns = eval("questionsObject.q" + event + ".ans")
+
+    qImg = eval("questionsObject.q" + event + ".imageLoc")
+
+    // For loop to go through questions
+    for (i = 0; i < answer.length; i++) {
+        var answerDiv = $("<div>");
+        var h2 = $("<h2>");
+        h2.attr("class", "answer-generated")
+        h2.val(answer[i])
+        h2.text(answer[i])
+
+        answerDiv.append(h1)
+
+        // push to HTML
+        $("#PLACEHOLDER-answer").append(answersDiv)
+
+    }
+    // push to HTMl
+    $(".PLACEHOLDER-question").html(curQ)
+}
