@@ -50,5 +50,17 @@ var questionsObject = {
         ans: "George Foreman",
         imageLoc: "assets/images/oldest.gif"
     }
-    
+
 };
+
+//Global Var
+var guessRight = 0;
+var guessWrong = 0;
+var noGuess = 0;
+
+var timeLeft = 20;
+var intervalId;
+var qCounter = 1;
+
+var rightAns = "";
+var qImg = "";
