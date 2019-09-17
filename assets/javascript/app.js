@@ -109,3 +109,20 @@ function displayQuestion(event) {
     // push to HTMl
     $(".PLACEHOLDER-question").html(curQ)
 }
+
+//function to evaluate the correct guess
+function rightGuess() {
+    $("#PLACEHOLDER-answer").empty()
+    // question counter
+    qCounter++
+
+    var imgEle = $("<img>")
+    // creates image source
+    imgEle.attr("src", qImg)
+
+    // intuitive but non-invasive indication of winning
+    $("#PLACEHOLDER-answer").html("<h3>Correct!!!</h3>")
+    // append img to HTML
+    $("#PLACEHOLDER-answer").append(imgEle)
+
+}
