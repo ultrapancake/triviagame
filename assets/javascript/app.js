@@ -64,3 +64,18 @@ var qCounter = 1;
 
 var rightAns = "";
 var qImg = "";
+
+//Timer
+function qTimer() {
+    clearInterval(intervalId)
+    intervalId = setInterval(decrement, 1000);
+}
+
+function decrement() {
+    timeLeft--;
+    $("#PLACEHOLDER").html(timeLeft)
+
+    if (timeLeft === 0) {
+        clearInterval(intervalId)
+    }
+}
