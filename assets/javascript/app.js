@@ -156,3 +156,19 @@ function gameLoad() {
         $("#answers").empty();
         displayQuestion(qCounter);
     })};
+
+// game reset function
+function gameReset(){
+    $("question").text("Game Over");
+    var startButton = $("<h2>");
+    startButton.addClass("startButton");
+    startButton.text("Reset Game");
+    $("#answers").append(startButton)
+    $(".startButton").on("click", function () {
+        $("#answers").empty();
+        guessRight = 0
+        guessWrong = 0
+        qCounter = 1
+        noGuess = 0
+        displayQuestion(qCounter);
+}
