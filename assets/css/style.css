@@ -1,18 +1,17 @@
 .answer-generated {
     text-align: center;
-    width: 20%;
+    width: 100%;
 }
 
 .answer-generated:hover {
     border: 1px solid black;
-    background: yellow;
     cursor: pointer;
 }
 
 .startButton {
     border: 1px solid black;
-    background: yellow;
+    width: 100%;
+}
+.startButton:hover{
     cursor: pointer;
-    text-align: center;
-    width: 20%;
 }
