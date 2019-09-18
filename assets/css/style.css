@@ -33,6 +33,7 @@ p{
 .answer-generated:hover {
     border: 1px solid black;
     cursor: pointer;
+    background-color: white;
 }
 
 .startButton {
@@ -43,4 +44,8 @@ p{
 }
 .startButton:hover{
     cursor: pointer;
+}
+img{
+    height: 200px;
+    width: 200px;
 }

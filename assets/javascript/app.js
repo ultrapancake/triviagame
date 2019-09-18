@@ -17,40 +17,40 @@ var questionsObject = {
         imageLoc: "assets/images/oldest.gif"
     },
     "3": {
-        q: "Who is the oldest heavyweight champion of all time?",
-        posibAns: ["Lennox Lewis", "Muhammad Ali", "George Foreman", "Joe Frazier"],
-        ans: "George Foreman",
-        imageLoc: "assets/images/oldest.gif"
+        q: "Who was the first gloved heavyweight champion?",
+        posibAns: ["Rocky Marciano", "John L. Sullivan", "Jack Dempsey", "Joe Lewis"],
+        ans: "John L. Sullivan",
+        imageLoc: "assets/images/john-l-sullivan.jpg"
     },
     "4": {
-        q: "Who is the oldest heavyweight champion of all time?",
-        posibAns: ["Lennox Lewis", "Muhammad Ali", "George Foreman", "Joe Frazier"],
-        ans: "George Foreman",
-        imageLoc: "assets/images/oldest.gif"
+        q: "In 1957 Sugar Ray Robinson threw a left hook that boxing critics have referred to as the perfect left hook. Who recieved this devistating punch?",
+        posibAns: ["Gene Fullmer", "Roberto Duran", "Willie Pep", "Jake LaMotta"],
+        ans: "Gene Fullmer",
+        imageLoc: "assets/images/ray-robinson.gif"
     },
     "5": {
-        q: "Who is the oldest heavyweight champion of all time?",
-        posibAns: ["Lennox Lewis", "Muhammad Ali", "George Foreman", "Joe Frazier"],
-        ans: "George Foreman",
-        imageLoc: "assets/images/oldest.gif"
+        q: "Who is the first Mexican boxer to win a world heavyweight title?",
+        posibAns: ["Canelo Alvarez", "Julio Cesar Chavez", "Andy Ruiz Jr.", "Juan Manuel Marquez"],
+        ans: "Andy Ruiz Jr.",
+        imageLoc: "assets/images/andy-ruiz-jr.gif"
     },
     "6": {
-        q: "Who is the oldest heavyweight champion of all time?",
-        posibAns: ["Lennox Lewis", "Muhammad Ali", "George Foreman", "Joe Frazier"],
-        ans: "George Foreman",
-        imageLoc: "assets/images/oldest.gif"
+        q: "Who is the longest reigning boxing world champion in any weight class?",
+        posibAns: ["Joe Louis", "Wladimir Klischko", "Andre Ward", "Takashi Uchiyama"],
+        ans: "Joe Louis",
+        imageLoc: "assets/images/joe-louis.png"
     },
     "7": {
-        q: "Who is the oldest heavyweight champion of all time?",
-        posibAns: ["Lennox Lewis", "Muhammad Ali", "George Foreman", "Joe Frazier"],
-        ans: "George Foreman",
-        imageLoc: "assets/images/oldest.gif"
+        q: "How many rounds was the longest gloved boxing match in history?",
+        posibAns: ["25 rounds", "200 rounds", "110 rounds", "78 rounds"],
+        ans: "110 rounds",
+        imageLoc: "assets/images/exhausted.gif"
     },
     "8": {
-        q: "Who is the oldest heavyweight champion of all time?",
-        posibAns: ["Lennox Lewis", "Muhammad Ali", "George Foreman", "Joe Frazier"],
-        ans: "George Foreman",
-        imageLoc: "assets/images/oldest.gif"
+        q: "Who was the youngest world champion ever at just 17 years old?",
+        posibAns: ["Naoya Inoue", "Mike Tyson", "Floyd Mayweather Jr.", "Wilfred Benitez"],
+        ans: "Wilfred Benitez",
+        imageLoc: "assets/images/wilfred-benitez.gif"
     }
 
 };
@@ -86,6 +86,9 @@ function endTimer() {
     }, 3000);
     $(".question").text("Times Up!!");
     $("#answers").html("<h2>Correct answer was " + rightAns + "</h2>");
+    var imgDisplay = $("<img>");
+    imgDisplay.attr("src", "assets/images/timer.gif");
+    $("#answers").append(imgDisplay);
 
 
 }
@@ -103,7 +106,7 @@ function decrement() {
 // function for grabing the questions from the question object
 function displayQuestion() {
     emptyDiv();
-    if (qCounter === 8) {
+    if (qCounter === 9) {
         consoleLog();
         gameReset();
 
@@ -148,7 +151,7 @@ function displayQuestion() {
                 setTimeout(function () {
                     displayQuestion()
                     $("#questionNumber").html(qCounter);
-                }, 3000);
+                }, 5000);
             } else {
                 qCounter++;
                 wrongGuess();
@@ -183,7 +186,10 @@ function wrongGuess() {
     $("#timeLeft").html(timeLeft);
     emptyDiv();
     $(".question").text("Wrong");
-    $("#answers").html("<h2>The Correct answer was " + rightAns + "</h2>");
+    $("#answers").append("<h2>The Correct answer was " + rightAns + "</h2>");
+    var imgDisplay = $("<img>");
+    imgDisplay.attr("src", "assets/images/lose.gif");
+    $("#answers").append(imgDisplay);
 }
 
 // console log function
