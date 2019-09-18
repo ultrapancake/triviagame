@@ -111,39 +111,48 @@ function displayQuestion(x) {
         }
         // push to HTMl
         $(".PLACEHOLDER-question").html(curQ)
-    }};
-
-    //function to evaluate the correct guess
-    function rightGuess() {
-        guessRight++
-        stop()
-        timeLeft = 20
-        $("#timeLeft").html(timeLeft)
-        $("#answers").empty()
-        $(".question").empty()
-
     }
-    // function for wrong guess
-    function wrongGuess() {
-        guessWrong++
-        stop()
-        timeLeft = 20
-        $("#timeLeft").html(timeLeft)
-        $("#answers").empty()
-        $(".question").empty()
-    }
+};
 
-    // console log function
-    function consoleLog() {
-        console.log(guessedCorrect);
-        console.log(guessedInncorect);
-        console.log(noGuessAnswers);
-    };
+//function to evaluate the correct guess
+function rightGuess() {
+    guessRight++
+    stop()
+    timeLeft = 20
+    $("#timeLeft").html(timeLeft)
+    $("#answers").empty()
+    $(".question").empty()
 
-    // stop function to call in different locations
-    function stop() {
-        clearInterval(intervalId)
-    };
+}
+// function for wrong guess
+function wrongGuess() {
+    guessWrong++
+    stop()
+    timeLeft = 20
+    $("#timeLeft").html(timeLeft)
+    $("#answers").empty()
+    $(".question").empty()
+}
 
-    // run function and pass object through as parameter
-    displayQuestion(qCounter);
+// console log function
+function consoleLog() {
+    console.log(guessedCorrect);
+    console.log(guessedInncorect);
+    console.log(noGuessAnswers);
+};
+
+// stop function to call in different locations
+function stop() {
+    clearInterval(intervalId)
+};
+
+// run function and pass object through as parameter
+function gameLoad() {
+    var startButton = $("<h2>");
+    startButton.addClass("startButton");
+    startButton.text("Start")
+    $("#answers").append(startButton)
+    $(".startButton").on("click", function () {
+        $("#answers").empty();
+        displayQuestion(qCounter);
+    })};
