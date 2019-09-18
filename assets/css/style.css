@@ -1,3 +1,25 @@
+body{
+    background-image:url(../images/pow-star.png)
+}
+#timeRemaining{
+    background-color: aquamarine;
+}
+#game{
+    background-color: aquamarine;
+}
+#header{
+    background-color: black;
+    color: white;
+}
+h1{
+    font-size: 48px;
+}
+h2{
+    font-size: 36px;
+}
+p{
+    font-size: 24px;
+}
 .answer-generated {
     text-align: center;
     width: 100%;
