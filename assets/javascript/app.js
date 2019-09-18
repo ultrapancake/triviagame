@@ -1,50 +1,50 @@
 //Questions object
 
 var questionsObject = {
-    q1: {
+    "1": {
         q: "What weight class is 145 lbs?",
         posibAns: ["125 lbs", "145 lbs", "160 lbs", "205 lbs"],
         ans: "145 lbs",
         imageLoc: "assets/images/welterweight.gif"
 
     },
-    q2: {
+    "2": {
         q: "Who is the oldest heavyweight champion of all time?",
         posibAns: ["Lennox Lewis", "Muhammad Ali", "George Foreman", "Joe Frazier"],
         ans: "George Foreman",
         imageLoc: "assets/images/oldest.gif"
     },
-    q3: {
+    "3": {
         q: "Who is the oldest heavyweight champion of all time?",
         posibAns: ["Lennox Lewis", "Muhammad Ali", "George Foreman", "Joe Frazier"],
         ans: "George Foreman",
         imageLoc: "assets/images/oldest.gif"
     },
-    q4: {
+    "4": {
         q: "Who is the oldest heavyweight champion of all time?",
         posibAns: ["Lennox Lewis", "Muhammad Ali", "George Foreman", "Joe Frazier"],
         ans: "George Foreman",
         imageLoc: "assets/images/oldest.gif"
     },
-    q5: {
+    "5": {
         q: "Who is the oldest heavyweight champion of all time?",
         posibAns: ["Lennox Lewis", "Muhammad Ali", "George Foreman", "Joe Frazier"],
         ans: "George Foreman",
         imageLoc: "assets/images/oldest.gif"
     },
-    q6: {
+    "6": {
         q: "Who is the oldest heavyweight champion of all time?",
         posibAns: ["Lennox Lewis", "Muhammad Ali", "George Foreman", "Joe Frazier"],
         ans: "George Foreman",
         imageLoc: "assets/images/oldest.gif"
     },
-    q7: {
+    "7": {
         q: "Who is the oldest heavyweight champion of all time?",
         posibAns: ["Lennox Lewis", "Muhammad Ali", "George Foreman", "Joe Frazier"],
         ans: "George Foreman",
         imageLoc: "assets/images/oldest.gif"
     },
-    q8: {
+    "8": {
         q: "Who is the oldest heavyweight champion of all time?",
         posibAns: ["Lennox Lewis", "Muhammad Ali", "George Foreman", "Joe Frazier"],
         ans: "George Foreman",
@@ -76,53 +76,74 @@ function decrement() {
     $("#PLACEHOLDER").html(timeLeft)
 
     if (timeLeft === 0) {
-        clearInterval(intervalId)
+        stop()
     }
 }
 
 // function for grabing the questions from the question object
-function displayQuestion(event) {
-    // pull from questionsObject
-    var curQ = eval("questionsObject.q" + event + ".q")
+function displayQuestion(x) {
+    if (qCounter === 4) {
+        consoleLog()
 
-    var answer = eval("questionsObject.q" + event + ".possibAns")
+    } else {
+        var curQ = questionsObject[x].q
 
-    // global variables
-    rightAns = eval("questionsObject.q" + event + ".ans")
+        var answer = questionsObject[x].possibleAnswers;
 
-    qImg = eval("questionsObject.q" + event + ".imageLoc")
+        // global variables
+        rightAns = questionsObject[x].answer;
 
-    // For loop to go through questions
-    for (i = 0; i < answer.length; i++) {
-        var answerDiv = $("<div>");
-        var h2 = $("<h2>");
-        h2.attr("class", "answer-generated")
-        h2.val(answer[i])
-        h2.text(answer[i])
+        qImg = questionsObject[x].answer;
 
-        answerDiv.append(h1)
+        // For loop to go through questions
+        for (i = 0; i < answer.length; i++) {
+            var answerDiv = $("<div>");
+            var h2 = $("<h2>");
+            h2.addClass("answer-generated")
+            h2.val(answer[i])
+            h2.text(answer[i])
 
-        // push to HTML
-        $("#PLACEHOLDER-answer").append(answersDiv)
+            answerDiv.append(h1)
+
+            // push to HTML
+            $("#PLACEHOLDER-answer").append(answersDiv)
+
+        }
+        // push to HTMl
+        $(".PLACEHOLDER-question").html(curQ)
+    }};
+
+    //function to evaluate the correct guess
+    function rightGuess() {
+        guessRight++
+        stop()
+        timeLeft = 20
+        $("#timeLeft").html(timeLeft)
+        $("#answers").empty()
+        $(".question").empty()
 
     }
-    // push to HTMl
-    $(".PLACEHOLDER-question").html(curQ)
-}
+    // function for wrong guess
+    function wrongGuess() {
+        guessWrong++
+        stop()
+        timeLeft = 20
+        $("#timeLeft").html(timeLeft)
+        $("#answers").empty()
+        $(".question").empty()
+    }
 
-//function to evaluate the correct guess
-function rightGuess() {
-    $("#PLACEHOLDER-answer").empty()
-    // question counter
-    qCounter++
+    // console log function
+    function consoleLog() {
+        console.log(guessedCorrect);
+        console.log(guessedInncorect);
+        console.log(noGuessAnswers);
+    };
 
-    var imgEle = $("<img>")
-    // creates image source
-    imgEle.attr("src", qImg)
+    // stop function to call in different locations
+    function stop() {
+        clearInterval(intervalId)
+    };
 
-    // intuitive but non-invasive indication of winning
-    $("#PLACEHOLDER-answer").html("<h3>Correct!!!</h3>")
-    // append img to HTML
-    $("#PLACEHOLDER-answer").append(imgEle)
-
-}
+    // run function and pass object through as parameter
+    displayQuestion(qCounter);
