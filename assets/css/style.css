@@ -1,6 +1,7 @@
 body{
     background-image:url(../images/pow-star.png);
     text-shadow: 1px 1px black;
+    font-family: 'Oswald', sans-serif;
 }
 #timeRemaining{
     background-color: aquamarine;
@@ -44,6 +45,7 @@ p{
 }
 .startButton:hover{
     cursor: pointer;
+    background-color: bisque;
 }
 img{
     height: 200px;

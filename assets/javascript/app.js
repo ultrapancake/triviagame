@@ -230,7 +230,7 @@ function gameReset() {
     // Dynamically create reset game button with same styling as start button
     var startButton = $("<h2>");
     startButton.addClass("startButton");
-    startButton.text("Reset Game");
+    startButton.text("Try Again?");
     $("#answers").append(startButton)
     $(".startButton").on("click", function () {
         $("#answers").empty();
