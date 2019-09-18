@@ -81,10 +81,11 @@ function endTimer() {
     $(".question").empty();
     qCounter++;
     setTimeout(function () {
-        displayQuestion(qCounter)
+        displayQuestion()
+        $("#questionNumber").html(qCounter);
     }, 3000);
     $(".question").text("Times Up!!");
-    $("#answers").html("<h2>correct answer was " + rightAns + "</h2>");
+    $("#answers").html("<h2>Correct answer was " + rightAns + "</h2>");
 
 
 }
@@ -145,13 +146,15 @@ function displayQuestion() {
                 qCounter++;
                 rightGuess();
                 setTimeout(function () {
-                    displayQuestion(qCounter)
+                    displayQuestion()
+                    $("#questionNumber").html(qCounter);
                 }, 3000);
             } else {
                 qCounter++;
                 wrongGuess();
                 setTimeout(function(){
-                    displayQuestion(qCounter)
+                    displayQuestion()
+                    $("#questionNumber").html(qCounter);
                 }, 3000);
             }
         })
@@ -204,6 +207,7 @@ function gameLoad() {
     $(".startButton").on("click", function () {
         emptyDiv();
         displayQuestion();
+        $("#questionNumber").html(qCounter);
     })
 };
 
@@ -229,6 +233,7 @@ function gameReset() {
         qCounter = 1
         noGuess = 0
         displayQuestion();
+        $("#questionNumber").html(qCounter);
     })
 };
 // empty text function so that i can empty and push inside function
@@ -236,6 +241,7 @@ function emptyDiv(){
     $("#answers").empty();
     $(".question").empty();
     $("#outcome").empty();
+    $("#questionNumber").empty();
 }
 gameLoad();
 })

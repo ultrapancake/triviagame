@@ -1,5 +1,6 @@
 body{
-    background-image:url(../images/pow-star.png)
+    background-image:url(../images/pow-star.png);
+    text-shadow: 1px 1px black;
 }
 #timeRemaining{
     background-color: aquamarine;
@@ -10,15 +11,19 @@ body{
 #header{
     background-color: black;
     color: white;
+    text-shadow: 1px 1px gray;
+
 }
 h1{
     font-size: 48px;
 }
 h2{
     font-size: 36px;
+    color: gray;
 }
 p{
     font-size: 24px;
+    color: gray;
 }
 .answer-generated {
     text-align: center;
@@ -31,8 +36,10 @@ p{
 }
 
 .startButton {
+    text-align: center;
     border: 1px solid black;
-    width: 100%;
+    width: 25%;
+    background-color: white;
 }
 .startButton:hover{
     cursor: pointer;
