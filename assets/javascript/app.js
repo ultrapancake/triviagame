@@ -1,5 +1,6 @@
 //Questions object
 
+
 var questionsObject = {
     "1": {
         q: "What weight class is 145 lbs?",
@@ -67,22 +68,22 @@ var qImg = "";
 
 //Timer
 function qTimer() {
-    clearInterval(intervalId)
+    clearInterval(intervalId);
     intervalId = setInterval(decrement, 1000);
 }
 function endTimer() {
-    noGuess++
-    stop()
-    timeLeft = 20
-    $("#timeLeft").html(timeLeft)
-    $("#answers").empty()
-    $(".question").empty()
-    qCounter++
+    noGuess++;
+    stop();
+    timeLeft = 20;
+    $("#timeLeft").html(timeLeft);
+    $("#answers").empty();
+    $(".question").empty();
+    qCounter++;
     setTimeout(function () {
         displayQuestion(qCounter)
-    }, 3000)
-    $(".question").text("Times Up!!")
-    $("#answers").html("<h2>correct answer was " + correctAnswer + "</h2>")
+    }, 3000);
+    $(".question").text("Times Up!!");
+    $("#answers").html("<h2>correct answer was " + correctAnswer + "</h2>");
 
 
 }
@@ -92,7 +93,7 @@ function decrement() {
     $("#PLACEHOLDER").html(timeLeft)
 
     if (timeLeft === 0) {
-        stop()
+        stop();
         endTimer();
     }
 }
@@ -105,7 +106,7 @@ function displayQuestion(x) {
         gameReset();
 
     } else {
-        var curQ = questionsObject[x].q
+        var curQ = questionsObject[x].q;
 
         var answer = questionsObject[x].possibleAnswers;
 
@@ -118,19 +119,20 @@ function displayQuestion(x) {
         for (i = 0; i < answer.length; i++) {
             var answerDiv = $("<div>");
             var h2 = $("<h2>");
-            h2.addClass("answer-generated")
-            h2.val(answer[i])
-            h2.text(answer[i])
+            h2.addClass("answer-generated");
+            h2.val(answer[i]);
+            h2.text(answer[i]);
 
-            answerDiv.append(h1)
+            answerDiv.append(h1);
 
             // push to HTML
-            $("#PLACEHOLDER-answer").append(answersDiv)
+            $("#PLACEHOLDER-answer").append(answersDiv);
 
         }
         // push to HTMl
-        $(".PLACEHOLDER-question").html(curQ)
+        $(".PLACEHOLDER-question").html(curQ);
         qTimer();
+        // Onclick event
         $("answer-generated").on("click", function(){
             var ansClick = $(this).val();
             if (ansClick === ans){
@@ -138,13 +140,13 @@ function displayQuestion(x) {
                 rightGuess();
                 setTimeout(function () {
                     displayQuestion(qCounter)
-                }, 3000)
+                }, 3000);
             } else {
                 qCounter++;
                 wrongGuess();
                 setTimeout(function(){
                     displayQuestion(qCounter)
-                }, 3000)
+                }, 3000);
             }
         })
 
@@ -153,26 +155,26 @@ function displayQuestion(x) {
 
 //function to evaluate the correct guess
 function rightGuess() {
-    guessRight++
-    stop()
-    timeLeft = 20
-    $("#timeLeft").html(timeLeft)
+    guessRight++;
+    stop();
+    timeLeft = 20;
+    $("#timeLeft").html(timeLeft);
     emptyDiv();
     $(".question").text("Right!");
     var imgDisplay = $("<img>");
-    imgDisplay.attr("src", qImg)
+    imgDisplay.attr("src", qImg);
     $("#answers").append(imgDisplay);
 
 }
 // function for wrong guess
 function wrongGuess() {
-    guessWrong++
-    stop()
-    timeLeft = 20
-    $("#timeLeft").html(timeLeft)
+    guessWrong++;
+    stop();
+    timeLeft = 20;
+    $("#timeLeft").html(timeLeft);
     emptyDiv();
     $(".question").text("Wrong");
-    $("#answers").html("<h2>The Correct answer was " + ans + "</h2>")
+    $("#answers").html("<h2>The Correct answer was " + ans + "</h2>");
 }
 
 // console log function
@@ -184,15 +186,15 @@ function consoleLog() {
 
 // stop function to call in different locations
 function stop() {
-    clearInterval(intervalId)
+    clearInterval(intervalId);
 };
 
 // run function and pass object through as parameter
 function gameLoad() {
     var startButton = $("<h2>");
     startButton.addClass("startButton");
-    startButton.text("Start")
-    $("#answers").append(startButton)
+    startButton.text("Start");
+    $("#answers").append(startButton);
     $(".startButton").on("click", function () {
         emptyDiv();
         displayQuestion(qCounter);
@@ -201,7 +203,15 @@ function gameLoad() {
 
 // game reset function
 function gameReset() {
+    // Alerts player that game is over
     $("question").text("Game Over");
+    // Final Score
+    $("#answers").append("<p> Correctly Guessed: " + guessedCorrect + "</p>");
+
+    $("#answers").append("<p> Incorreclty Guessed: " + guessedInncorect + "</p>");
+
+    $("#answers").append("<p> Unanswered Questions: " + noGuessAnswers + "</p>");
+    // Dynamically create reset game button with same styling as start button
     var startButton = $("<h2>");
     startButton.addClass("startButton");
     startButton.text("Reset Game");
