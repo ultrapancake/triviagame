@@ -80,7 +80,9 @@ function endTimer() {
     qCounter++
     setTimeout(function () {
         displayQuestion(qCounter)
-    }, 1000)
+    }, 3000)
+    $(".question").text("Times Up!!")
+    $("#answers").html("<h2>correct answer was " + correctAnswer + "</h2>")
 
 
 }
@@ -97,6 +99,7 @@ function decrement() {
 
 // function for grabing the questions from the question object
 function displayQuestion(x) {
+    emptyDiv();
     if (qCounter === 8) {
         consoleLog();
         gameReset();
@@ -135,13 +138,13 @@ function displayQuestion(x) {
                 rightGuess();
                 setTimeout(function () {
                     displayQuestion(qCounter)
-                }, 1000)
+                }, 3000)
             } else {
                 qCounter++;
                 wrongGuess();
                 setTimeout(function(){
                     displayQuestion(qCounter)
-                }, 1000)
+                }, 3000)
             }
         })
 
@@ -154,8 +157,11 @@ function rightGuess() {
     stop()
     timeLeft = 20
     $("#timeLeft").html(timeLeft)
-    $("#answers").empty()
-    $(".question").empty()
+    emptyDiv();
+    $(".question").text("Right!");
+    var imgDisplay = $("<img>");
+    imgDisplay.attr("src", qImg)
+    $("#answers").append(imgDisplay);
 
 }
 // function for wrong guess
@@ -164,8 +170,9 @@ function wrongGuess() {
     stop()
     timeLeft = 20
     $("#timeLeft").html(timeLeft)
-    $("#answers").empty()
-    $(".question").empty()
+    emptyDiv();
+    $(".question").text("Wrong");
+    $("#answers").html("<h2>The Correct answer was " + ans + "</h2>")
 }
 
 // console log function
@@ -187,7 +194,7 @@ function gameLoad() {
     startButton.text("Start")
     $("#answers").append(startButton)
     $(".startButton").on("click", function () {
-        $("#answers").empty();
+        emptyDiv();
         displayQuestion(qCounter);
     })
 };
@@ -208,4 +215,9 @@ function gameReset() {
         displayQuestion(qCounter);
     })
 };
+// empty text function so that i can empty and push inside function
+function emptyDiv(){
+    $("#answers").empty();
+    $(".question").empty();
+}
 gameLoad();
