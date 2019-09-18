@@ -70,6 +70,20 @@ function qTimer() {
     clearInterval(intervalId)
     intervalId = setInterval(decrement, 1000);
 }
+function endTimer() {
+    noGuess++
+    stop()
+    timeLeft = 20
+    $("#timeLeft").html(timeLeft)
+    $("#answers").empty()
+    $(".question").empty()
+    qCounter++
+    setTimeout(function () {
+        displayQuestion(qCounter)
+    }, 1000)
+
+
+}
 
 function decrement() {
     timeLeft--;
@@ -77,13 +91,15 @@ function decrement() {
 
     if (timeLeft === 0) {
         stop()
+        endTimer();
     }
 }
 
 // function for grabing the questions from the question object
 function displayQuestion(x) {
-    if (qCounter === 4) {
-        consoleLog()
+    if (qCounter === 8) {
+        consoleLog();
+        gameReset();
 
     } else {
         var curQ = questionsObject[x].q
@@ -111,6 +127,24 @@ function displayQuestion(x) {
         }
         // push to HTMl
         $(".PLACEHOLDER-question").html(curQ)
+        qTimer();
+        $("answer-generated").on("click", function(){
+            var ansClick = $(this).val();
+            if (ansClick === ans){
+                qCounter++;
+                rightGuess();
+                setTimeout(function () {
+                    displayQuestion(qCounter)
+                }, 1000)
+            } else {
+                qCounter++;
+                wrongGuess();
+                setTimeout(function(){
+                    displayQuestion(qCounter)
+                }, 1000)
+            }
+        })
+
     }
 };
 
@@ -136,9 +170,9 @@ function wrongGuess() {
 
 // console log function
 function consoleLog() {
-    console.log(guessedCorrect);
-    console.log(guessedInncorect);
-    console.log(noGuessAnswers);
+    console.log(guessedRight);
+    console.log(guessedWrong);
+    console.log(noGuess);
 };
 
 // stop function to call in different locations
@@ -155,10 +189,11 @@ function gameLoad() {
     $(".startButton").on("click", function () {
         $("#answers").empty();
         displayQuestion(qCounter);
-    })};
+    })
+};
 
 // game reset function
-function gameReset(){
+function gameReset() {
     $("question").text("Game Over");
     var startButton = $("<h2>");
     startButton.addClass("startButton");
@@ -171,4 +206,6 @@ function gameReset(){
         qCounter = 1
         noGuess = 0
         displayQuestion(qCounter);
-}
+    })
+};
+gameLoad();
