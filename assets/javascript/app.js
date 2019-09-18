@@ -1,9 +1,10 @@
-//Questions object
+$(document).ready(function(){
+    //Questions object
 
 
 var questionsObject = {
     "1": {
-        q: "What weight class is 145 lbs?",
+        q: "What weight class is Welterweight?",
         posibAns: ["125 lbs", "145 lbs", "160 lbs", "205 lbs"],
         ans: "145 lbs",
         imageLoc: "assets/images/welterweight.gif"
@@ -90,7 +91,7 @@ function endTimer() {
 
 function decrement() {
     timeLeft--;
-    $("#PLACEHOLDER").html(timeLeft)
+    $("#timeLeft").html(timeLeft)
 
     if (timeLeft === 0) {
         stop();
@@ -99,42 +100,47 @@ function decrement() {
 }
 
 // function for grabing the questions from the question object
-function displayQuestion(x) {
+function displayQuestion(event) {
     emptyDiv();
     if (qCounter === 8) {
         consoleLog();
         gameReset();
 
     } else {
-        var curQ = questionsObject[x].q;
+        var curQ = questionsObject[event].q;
 
-        var answer = questionsObject[x].possibleAnswers;
+        var answer = questionsObject[event].possibAns;
 
         // global variables
-        rightAns = questionsObject[x].answer;
+        rightAns = questionsObject[event].ans;
 
-        qImg = questionsObject[x].answer;
+        qImg = questionsObject[event].ans;
+        console.log(curQ)
+        console.log(answer)
+        console.log(rightAns)
+        console.log(qImg)
 
         // For loop to go through questions
         for (i = 0; i < answer.length; i++) {
             var answerDiv = $("<div>");
             var h2 = $("<h2>");
             h2.addClass("answer-generated");
-            h2.val(answer[i]);
+            h2.attr("data-value", answer[i]);
             h2.text(answer[i]);
 
             answerDiv.append(h1);
 
             // push to HTML
-            $("#PLACEHOLDER-answer").append(answersDiv);
+            $("#answers").append(answersDiv);
 
         }
         // push to HTMl
-        $(".PLACEHOLDER-question").html(curQ);
+        $(".question").html(curQ);
         qTimer();
+        console.log(curQ);
         // Onclick event
-        $("answer-generated").on("click", function(){
-            var ansClick = $(this).val();
+        $(".answer-generated").on("click", function(){
+            var ansClick = $(this).attr("data-value");
             if (ansClick === ans){
                 qCounter++;
                 rightGuess();
@@ -198,13 +204,14 @@ function gameLoad() {
     $(".startButton").on("click", function () {
         emptyDiv();
         displayQuestion(qCounter);
+        console.log(qCounter);
     })
 };
 
 // game reset function
 function gameReset() {
     // Alerts player that game is over
-    $("question").text("Game Over");
+    $(".question").text("Game Over");
     // Final Score
     $("#answers").append("<p> Correctly Guessed: " + guessedCorrect + "</p>");
 
@@ -223,6 +230,8 @@ function gameReset() {
         qCounter = 1
         noGuess = 0
         displayQuestion(qCounter);
+        console.log(qCounter);
+
     })
 };
 // empty text function so that i can empty and push inside function
@@ -231,3 +240,4 @@ function emptyDiv(){
     $(".question").empty();
 }
 gameLoad();
+})
