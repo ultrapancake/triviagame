@@ -114,15 +114,10 @@ function displayQuestion() {
         var curQ = questionsObject[qCounter].q;
 
         var answer = questionsObject[qCounter].posibAns;
-        console.log(questionsObject[qCounter].posibAns)
         // global variables
         rightAns = questionsObject[qCounter].ans;
 
         qImg = questionsObject[qCounter].imageLoc;
-        console.log(curQ)
-        console.log(answer)
-        console.log(rightAns)
-        console.log(qImg)
 
         // For loop to go through questions
         for (i = 0; i < answer.length; i++) {
